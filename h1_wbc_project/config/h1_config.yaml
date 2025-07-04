@@ -1,0 +1,44 @@
+# Create config/h1_config.yaml
+mkdir -p config
+cat > config/h1_config.yaml << 'EOF'
+robot:
+  name: "unitree_h1"
+  dof: 19
+  mass: 47.0  # kg
+  height: 1.3  # m
+
+wbc:
+  tasks:
+    com:
+      weight: 1000.0
+      kp: [400, 400, 400]
+      kd: [40, 40, 40]
+    
+    feet:
+      weight: 2000.0
+      kp_pos: [400, 400, 400]
+      kd_pos: [40, 40, 40]
+      kp_ori: [100, 100, 100]
+      kd_ori: [20, 20, 20]
+    
+    posture:
+      weight: 1.0
+      kp: 50.0
+      kd: 10.0
+  
+  regularization: 1e-4
+  
+walking:
+  step_length: 0.2    # m
+  step_width: 0.15    # m
+  step_height: 0.05   # m
+  swing_time: 0.4     # s
+  stance_time: 0.2    # s
+  max_velocity: 0.5   # m/s
+
+safety:
+  max_joint_torque: 100.0   # Nm
+  max_joint_velocity: 10.0  # rad/s
+  max_com_accel: 5.0        # m/s²
+  emergency_stop_height: 0.3 # m
+EOF
